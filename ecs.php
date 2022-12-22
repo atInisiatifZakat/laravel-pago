@@ -12,10 +12,8 @@ use PhpCsFixer\Fixer\PhpUnit\PhpUnitMethodCasingFixer;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
 return static function (ECSConfig $containerConfigurator): void {
-    $parameters = $containerConfigurator->parameters();
-    $parameters->set(Option::PATHS, [
+    $containerConfigurator->skip([
         __DIR__ . '/src',
-        __DIR__ . '/database',
         __DIR__ . '/tests',
         __DIR__ . '/ecs.php',
     ]);

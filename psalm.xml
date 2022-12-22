@@ -8,4 +8,7 @@
             <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
+    <issueHandlers>
+        <PossiblyUndefinedMethod errorLevel="info" />
+    </issueHandlers>
 </psalm>

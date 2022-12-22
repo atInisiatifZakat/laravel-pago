@@ -1,24 +1,27 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "inisiatif/laravel-pago",
+    "description": "Package for intengation with Pago",
     "keywords": [
-        ":vendor_name",
+        "pago",
         "laravel",
-        ":package_slug"
+        "laravel-pago"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/atInisiatifZakat/laravel-pago",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Nuradiyana",
+            "email": "me@nooradiana.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.1",
+        "php": "~8.0.1|~8.1.0",
+        "guzzlehttp/guzzle": "^7.2",
+        "illuminate/contracts": "^9.0",
+        "illuminate/http": "^9.0",
         "spatie/laravel-package-tools": "^1.13.0",
-        "illuminate/contracts": "^9.0"
+        "webmozart/assert": "^1.11"
     },
     "require-dev": {
         "nunomaduro/collision": "^6.0",
@@ -29,13 +32,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "LaravelPago\\": "src",
+            "LaravelPago\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "LaravelPago\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -52,7 +55,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "LaravelPago\\LaravelPagoServiceProvider"
             ]
         }
     },
