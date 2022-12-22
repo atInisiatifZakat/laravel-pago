@@ -18,14 +18,12 @@ class LaravelPagoServiceProvider extends PackageServiceProvider
     public function bootingPackage(): void
     {
         LaravelPago::useRedirectUrl(
-            \config('pago.redirect_url')
+            \config('services.pago.redirect')
         );
     }
 
     public function configurePackage(Package $package): void
     {
-        $package
-            ->name('laravel-pago')
-            ->hasConfigFile();
+        $package->name('laravel-pago');
     }
 }

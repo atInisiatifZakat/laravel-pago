@@ -17,7 +17,7 @@ final class LaravelPago
         );
     }
 
-    public static function useRedirectUrl(string $url): void
+    public static function useRedirectUrl(?string $url = null): void
     {
         self::$pagoRedirectUrl = $url;
     }
