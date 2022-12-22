@@ -30,6 +30,7 @@ final class GetTransactionOutput
         Assert::keyExists($data, 'cancel_at');
         Assert::keyExists($data, 'payment_at');
         Assert::keyExists($data, 'paid_at');
+        Assert::keyExists($data, 'confirm_at');
         Assert::keyExists($data, 'items');
         Assert::keyExists($data, 'payment_link');
         Assert::keyExists($data, 'customer');
@@ -55,10 +56,13 @@ final class GetTransactionOutput
             $data['original_amount'],
             $data['created_at'] ? Carbon::parse($data['created_at']) : null,
             $data['unique_code'],
+            $data['payment_number'],
+            $data['payment_name'],
             $data['expired_at'] ? Carbon::parse($data['expired_at']) : null,
             $data['cancel_at'] ? Carbon::parse($data['cancel_at']) : null,
             $data['payment_at'] ? Carbon::parse($data['payment_at']) : null,
             $data['paid_at'] ? Carbon::parse($data['paid_at']) : null,
+            $data['confirm_at'] ? Carbon::parse($data['confirm_at']) : null,
             \array_map(static fn(array $item) => new TransactionItem($item['product'], $item['amount'], $item['names'] ?? null), $data['items'])
         );
     }
@@ -80,5 +84,15 @@ final class GetTransactionOutput
         return new PaymentLink(
             $data['name'], $data['slug'],
         );
+    }
+
+    private static function createChannelFromArray(?array $data = null): ?Channel
+    {
+        foreach (['id', 'uuid', 'name', 'default_number'] as $value) {
+            Assert::nullOrKeyExists($data, $value);
+        }
+        return $data ? new Channel(
+            $data['id'], $data['uuid'], $data['name'], $data['default_number']
+        ) : null;
     }
 }

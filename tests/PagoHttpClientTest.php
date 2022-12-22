@@ -4,7 +4,6 @@ namespace LaravelPago\Tests;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use Illuminate\Support\Arr;
 use LaravelPago\LaravelPago;
 use LaravelPago\Model\Customer;
 use LaravelPago\Input\Transaction;
@@ -50,6 +49,9 @@ final class PagoHttpClientTest extends TestCase
     "cancel_at": null,
     "payment_at": "2022-12-21T03:55:01.000000Z",
     "paid_at": null,
+    "confirm_at": null,
+    "payment_number": null,
+    "payment_name": null,
     "items": [
       {"product":  "Testing product", "amount":  "1000"}
     ],
@@ -82,6 +84,9 @@ JSON, true))
         $this->assertNull($output->transaction->cancelAt);
         $this->assertNull($output->transaction->expiredAt);
         $this->assertNull($output->transaction->paidAt);
+        $this->assertNull($output->transaction->confirmAt);
+        $this->assertNull($output->transaction->paymentNumber);
+        $this->assertNull($output->transaction->paymentName);
 
         $this->assertCount(1, $output->transaction->items);
         $this->assertSame($fakeResponse['items'][0]['product'], $output->transaction->items[0]->product);

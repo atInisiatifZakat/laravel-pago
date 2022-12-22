@@ -15,10 +15,13 @@ class Transaction
         public int|float $originalAmount,
         public DateTimeInterface  $createdAt,
         public int|float $uniqueCode = 0,
+        public ?string $paymentNumber = null,
+        public ?string $paymentName = null,
         public ?DateTimeInterface $expiredAt = null,
         public ?DateTimeInterface $cancelAt = null,
         public ?DateTimeInterface $paymentAt = null,
         public ?DateTimeInterface $paidAt = null,
+        public ?DateTimeInterface $confirmAt = null,
 
         /**
          * @var TransactionItem[]
