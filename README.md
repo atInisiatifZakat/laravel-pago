@@ -2,8 +2,8 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/inisiatif/laravel-pago.svg?style=flat-square)](https://packagist.org/packages/atInisiatifZakat/laravel-pago)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/atInisiatifZakat/laravel-pago/run-tests?label=tests)](https://github.com/atInisiatifZakat/laravel-pago/actions?query=workflow%3A%22Running+phpunit%22+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/atInisiatifZakat/laravel-pago/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/atInisiatifZakat/laravel-pago/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/atInisiatifZakat/laravel-pago.svg?style=flat-square)](https://packagist.org/packages/atInisiatifZakat/laravel-pago)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/atInisiatifZakat/laravel-pago/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/atInisiatifZakat/laravel-pago/actions?query=branch%3Amain+workflow%3A%22Running+ECS%22)
+[![Total Downloads](https://img.shields.io/packagist/dt/atInisiatifZakat/laravel-pago.svg?style=flat-square)](https://packagist.org/packages/inisiatif/laravel-pago)
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
