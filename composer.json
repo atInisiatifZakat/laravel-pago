@@ -20,6 +20,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "illuminate/contracts": "^9.0",
         "illuminate/http": "^9.0",
+        "psr/log": "^3.0",
         "spatie/laravel-package-tools": "^1.13.0",
         "webmozart/assert": "^1.11"
     },

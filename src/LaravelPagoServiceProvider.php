@@ -2,16 +2,18 @@
 
 namespace LaravelPago;
 
+use Psr\Log\LoggerInterface;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class LaravelPagoServiceProvider extends PackageServiceProvider
+final class LaravelPagoServiceProvider extends PackageServiceProvider
 {
     public function registeringPackage(): void
     {
         $this->app->singleton(PagoSnapClient::class, fn() => LaravelPago::clientFactory(
             \config('services.pago'),
-            !$this->app->environment('production')
+            !$this->app->environment('production'),
+            $this->app->make(LoggerInterface::class)
         ));
     }
 

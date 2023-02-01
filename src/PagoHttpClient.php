@@ -2,6 +2,8 @@
 
 namespace LaravelPago;
 
+use Psr\Log\NullLogger;
+use Psr\Log\LoggerInterface;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\PendingRequest;
 use LaravelPago\Output\GetTransactionOutput;
@@ -16,9 +18,13 @@ final class PagoHttpClient implements PagoSnapClient
 
     public function __construct(
         private string $key,
-        private bool   $isSandbox = true
+        private bool $isSandbox = true,
+        private ?LoggerInterface $logger = null
     )
     {
+        if($this->logger === null) {
+            $this->logger = new NullLogger();
+        }
     }
 
     public function createTransaction(CreateSnapTransactionInput $input): CreateSnapTransactionOutput
@@ -26,6 +32,8 @@ final class PagoHttpClient implements PagoSnapClient
         $response = $this->getHttpClient()->post('v1/transaction', \array_merge($input->toArray(), [
             'redirect_url' => LaravelPago::getRedirectUrl(),
         ]));
+
+        $this->logger->info('Pago Create Transaction Response', $response->json());
 
         return new CreateSnapTransactionOutput(
             (string)$response->json('transaction_id'),
