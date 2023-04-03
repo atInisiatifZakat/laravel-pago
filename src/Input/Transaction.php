@@ -9,13 +9,13 @@ class Transaction
 {
     public function __construct(
         public int|float  $amount,
-        public array  $paymentChannels,
         public string|int $transactionNumber,
 
         /**
          * @var TransactionItem[]
          */
-        public array $items
+        public array $items,
+        public ?array  $paymentChannels = null,
     )
     {
         Assert::same($this->amount, $this->getTotalAmountItem());
