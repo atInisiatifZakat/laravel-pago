@@ -24,7 +24,7 @@ final class PagoHttpClientTest extends TestCase
 
         $output = LaravelPago::clientFactory(['key' => 'pago-fake-key'])->createTransaction(new CreateSnapTransactionInput(
             new Customer('Nuradiyana'),
-            new Transaction(1000000, '001', [
+            new Transaction(1000000, [1, 2],'001', [
                 new TransactionItem('Testing product', 1000000)
             ])
         ));
@@ -52,6 +52,7 @@ final class PagoHttpClientTest extends TestCase
     "confirm_at": null,
     "payment_number": null,
     "payment_name": null,
+    "payment_channels": [1, 2],
     "items": [
       {"product":  "Testing product", "amount":  "1000"}
     ],
@@ -81,6 +82,7 @@ JSON, true))
         $this->assertSame($fakeResponse['unique_code'], $output->transaction->uniqueCode);
         $this->assertSame($fakeResponse['created_at'], Carbon::parse($output->transaction->createdAt)->toISOString());
         $this->assertSame($fakeResponse['payment_at'], Carbon::parse($output->transaction->paymentAt)->toISOString());
+        $this->assertSame($fakeResponse['payment_channels'], $output->transaction->paymentChannels);
         $this->assertNull($output->transaction->cancelAt);
         $this->assertNull($output->transaction->expiredAt);
         $this->assertNull($output->transaction->paidAt);

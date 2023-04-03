@@ -9,6 +9,7 @@ class Transaction
 {
     public function __construct(
         public int|float  $amount,
+        public array  $paymentChannels,
         public string|int $transactionNumber,
 
         /**

@@ -22,6 +22,7 @@ class Transaction
         public ?DateTimeInterface $paymentAt = null,
         public ?DateTimeInterface $paidAt = null,
         public ?DateTimeInterface $confirmAt = null,
+        public ?array $paymentChannels = null,
 
         /**
          * @var TransactionItem[]

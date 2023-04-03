@@ -63,6 +63,7 @@ final class GetTransactionOutput
             $data['payment_at'] ? Carbon::parse($data['payment_at']) : null,
             $data['paid_at'] ? Carbon::parse($data['paid_at']) : null,
             $data['confirm_at'] ? Carbon::parse($data['confirm_at']) : null,
+            $data['payment_channels'],
             \array_map(static fn(array $item) => new TransactionItem($item['product'], $item['amount'], $item['names'] ?? null), $data['items'])
         );
     }
