@@ -26,7 +26,8 @@ final class PagoHttpClientTest extends TestCase
             new Customer('Nuradiyana'),
             new Transaction(1000000, '001', [
                 new TransactionItem('Testing product', 1000000)
-            ])
+            ],
+            [1, 2])
         ));
 
         $this->assertSame($fakeResponse['transaction_id'], $output->transactionId);
