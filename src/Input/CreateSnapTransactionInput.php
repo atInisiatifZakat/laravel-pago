@@ -27,10 +27,10 @@ final class CreateSnapTransactionInput implements Arrayable
             'address' => $this->customer->address,
             'identification_number' => $this->transaction->transactionNumber,
             'amount' => $this->transaction->amount,
-            'payment_channels' => $this->transaction->paymentChannels,
             'items' => \array_map(static function (TransactionItem $item): array {
                 return ['product' => $item->amount, 'amount' => $item->amount, 'names' => $item->names];
             }, $this->transaction->items),
+            'payment_channels' => $this->transaction->paymentChannels,
         ];
     }
 }

@@ -24,9 +24,10 @@ final class PagoHttpClientTest extends TestCase
 
         $output = LaravelPago::clientFactory(['key' => 'pago-fake-key'])->createTransaction(new CreateSnapTransactionInput(
             new Customer('Nuradiyana'),
-            new Transaction(1000000,'001', [
+            new Transaction(1000000, '001', [
                 new TransactionItem('Testing product', 1000000)
-            ], [1, 2])
+            ],
+            [1, 2])
         ));
 
         $this->assertSame($fakeResponse['transaction_id'], $output->transactionId);
