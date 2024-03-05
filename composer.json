@@ -16,10 +16,8 @@
         }
     ],
     "require": {
-        "php": "~8.0.1|~8.1.0",
+        "php": "^8.0",
         "guzzlehttp/guzzle": "^7.2",
-        "illuminate/contracts": "^9.0",
-        "illuminate/http": "^9.0",
         "psr/log": "^3.0",
         "spatie/laravel-package-tools": "^1.13.0",
         "webmozart/assert": "^1.11"
@@ -27,7 +25,6 @@
     "require-dev": {
         "nunomaduro/collision": "^6.0",
         "orchestra/testbench": "^7.0",
-        "phpunit/phpunit": "^9.5",
         "symplify/easy-coding-standard": "^11.1",
         "vimeo/psalm": "^5.0"
     },
