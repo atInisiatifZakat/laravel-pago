@@ -12,7 +12,7 @@ use LaravelPago\Output\CreateSnapTransactionOutput;
 
 final class PagoHttpClient implements PagoSnapClient
 {
-    private static string $pagoDevUrl = 'https://sandbox.izipay.id/api/pago';
+    private static string $pagoDevUrl = 'https://pago.ondevizi.com/api/pago';
 
     private static string $pagoProdUrl = 'https://app.izipay.id/api/pago';
 

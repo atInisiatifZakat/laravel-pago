@@ -15,6 +15,12 @@ final class LaravelPagoServiceProvider extends PackageServiceProvider
             !$this->app->environment('production'),
             $this->app->make(LoggerInterface::class)
         ));
+
+        $this->app->singleton(PagoSinglePaymentSnapClient::class, fn() => LaravelPago::clientSinglePaymentFactory(
+            \config('services.pago'),
+            !$this->app->environment('production'),
+            $this->app->make(LoggerInterface::class)
+        ));
     }
 
     public function bootingPackage(): void
