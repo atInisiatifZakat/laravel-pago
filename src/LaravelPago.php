@@ -18,6 +18,15 @@ final class LaravelPago
         );
     }
 
+    public static function clientSinglePaymentFactory(?array $config = null, bool $isSandbox = false, ?LoggerInterface $logger = null): PagoSinglePaymentSnapClient
+    {
+        Assert::nullOrKeyExists($config, 'key');
+
+        return new PagoSinglePaymentHttpClient(
+            $config ? $config['key'] : '', $isSandbox, $logger
+        );
+    }
+
     public static function useRedirectUrl(?string $url = null): void
     {
         self::$pagoRedirectUrl = $url;
