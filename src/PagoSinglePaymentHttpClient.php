@@ -36,7 +36,11 @@ final class PagoSinglePaymentHttpClient implements PagoSinglePaymentSnapClient
       (string)$response->json('transaction_id'),
       (string)$response->json('status'),
       $response->json('category'),
-      $response->json($response->json('category'))
+      $response->json('identification_number'),
+      $response->json('unique_code'),
+      $response->json('amount'),
+      $response->json('date'),
+      $response->json($response->json('category')),
     );
   }
 

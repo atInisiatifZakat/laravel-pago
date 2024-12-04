@@ -29,7 +29,8 @@ final class CreateSinglePaymentSnapTransactionInput implements Arrayable
                 return ['product' => $item->amount, 'amount' => $item->amount, 'names' => $item->names];
             }, $this->transaction->items),
             'payment_channel_id' => $this->transaction->paymentChannelId,
-            'payment_method_id' => $this->transaction->paymentMethodId
+            'payment_number' => $this->transaction->paymentNumber,
+            'payment_method_id' => $this->transaction->paymentMethodId,
         ];
     }
 }
