@@ -15,7 +15,8 @@ class TransactionSinglePayment
          * @var TransactionItem[]
          */
         public array $items,
-        public ?int $paymentChannelId = null,
+        public int $paymentChannelId,
+        public ?string $paymentNumber = null,
         public ?string $paymentMethodId = null
     ) {
         Assert::same($this->amount, $this->getTotalAmountItem());
