@@ -22,7 +22,7 @@ class Customer
 
             if (
                 !(str_starts_with($this->phone, '62') || str_starts_with($this->phone, '+62')) ||
-                strlen($this->phone) > 15
+                strlen($this->phone) > 13
             ) {
                 throw new \InvalidArgumentException('Nomor telepon harus diawali dengan 62, +62, atau 0, dan maksimal 13 karakter.');
             }
