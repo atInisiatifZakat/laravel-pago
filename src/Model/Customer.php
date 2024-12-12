@@ -15,9 +15,10 @@ class Customer
         Assert::nullOrEmail($this->email);
 
         if (!is_null($this->phone)) {
+            $this->phone = \trim($this->phone);
 
             if (str_starts_with($this->phone, '0')) {
-                $this->phone = '+62' . substr($this->phone, 1);
+                $this->phone = \trim('+62' . substr($this->phone, 1));
             }
 
             if (
