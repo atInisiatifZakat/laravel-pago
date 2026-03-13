@@ -24,10 +24,14 @@ final class PagoHttpClientTest extends TestCase
 
         $output = LaravelPago::clientFactory(['key' => 'pago-fake-key'])->createTransaction(new CreateSnapTransactionInput(
             new Customer('Nuradiyana'),
-            new Transaction(1000000, '001', [
-                new TransactionItem('Testing product', 1000000)
-            ],
-            [1, 2])
+            new Transaction(
+                1000000,
+                '001',
+                [
+                    new TransactionItem('Testing product', 1000000)
+                ],
+                [1, 2]
+            )
         ));
 
         $this->assertSame($fakeResponse['transaction_id'], $output->transactionId);
@@ -101,5 +105,38 @@ JSON, true))
         $this->assertNotNull($output->link);
         $this->assertSame($fakeResponse['payment_link']['name'], $output->link?->name);
         $this->assertSame($fakeResponse['payment_link']['slug'], $output->link?->slug);
+    }
+
+    public function test_delete_space_whiteline_symbol_from_customer(): void
+    {
+        $customer1 = new Customer('Stark', null, "62 85156258973");
+        $customer2 = new Customer('Frieren', null, "62 85156258973\n");
+        $customer3 =  new Customer('Fern', null, "628515@a6258973\n");
+
+        $this->assertSame("6285156258973", $customer1->phone);
+        $this->assertSame("6285156258973", $customer2->phone);
+        $this->assertSame("6285156258973", $customer3->phone);
+
+        Http::fake([
+            '*.izipay.id/*' => Http::response($fakeResponse = [
+                'transaction_id' => Str::uuid()->toString(),
+                'pago_url' => 'https://example.com'
+            ])
+        ]);
+
+        $output = LaravelPago::clientFactory(['key' => 'pago-fake-key'])->createTransaction(new CreateSnapTransactionInput(
+            $customer3,
+            new Transaction(
+                1000000,
+                '001',
+                [
+                    new TransactionItem('Testing product', 1000000)
+                ],
+                [1, 2]
+            )
+        ));
+
+        $this->assertSame($fakeResponse['transaction_id'], $output->transactionId);
+        $this->assertSame($fakeResponse['pago_url'], $output->redirectUrl);
     }
 }
