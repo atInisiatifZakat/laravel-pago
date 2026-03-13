@@ -16,6 +16,7 @@ class Customer
 
         if (!is_null($this->phone)) {
             $this->phone = \trim($this->phone);
+            $this->phone = preg_replace('/[^0-9+]/', '', $this->phone);
 
             if (str_starts_with($this->phone, '0')) {
                 $this->phone = \trim('+62' . substr($this->phone, 1));
