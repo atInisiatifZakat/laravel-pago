@@ -14,7 +14,7 @@ final class PagoHttpClient implements PagoSnapClient
 {
     private static string $pagoDevUrl = 'https://pago.ondevizi.com/api/pago';
 
-    private static string $pagoProdUrl = 'https://app.izipay.id/api/pago';
+    private static string $pagoProdUrl = 'https://app.pago.id/api/pago';
 
     public function __construct(
         private string $key,
