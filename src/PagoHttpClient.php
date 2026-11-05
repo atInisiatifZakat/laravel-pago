@@ -6,8 +6,10 @@ use Psr\Log\NullLogger;
 use Psr\Log\LoggerInterface;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Http\Response;
 use LaravelPago\Output\GetTransactionOutput;
 use LaravelPago\Input\CreateSnapTransactionInput;
+use LaravelPago\Input\UpdateSnapTransactionStatusInput;
 use LaravelPago\Output\CreateSnapTransactionOutput;
 
 final class PagoHttpClient implements PagoSnapClient
@@ -46,6 +48,13 @@ final class PagoHttpClient implements PagoSnapClient
         $response = $this->getHttpClient()->get('v1/transaction/' . $transactionId);
 
         return GetTransactionOutput::fromJson($response->json());
+    }
+
+    public function updateTransactionStatus(string $transactionId, UpdateSnapTransactionStatusInput $input): Response
+    {
+        $this->getHttpClient()->patch('v1/transaction/' . $transactionId . '/status', $input->toArray());
+
+        return new Response(status: 204);
     }
 
     private function getHttpClient(): PendingRequest
